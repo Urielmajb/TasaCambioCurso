@@ -1,0 +1,66 @@
+﻿@model DAL.Alumno
+
+@{
+    ViewBag.Title = "InscripcionVer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>InscripcionVer</h2>*@
+
+<ol class="breadcrumb">
+    <li>
+        <a href="~/Inscripcion/InscripcionListar"> Listar Alumnos </a>
+
+    </li>
+</ol>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading"> Informacion Personal del Alumno</div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Apellido)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </dt>
+
+            <dd>
+                @*@Html.DisplayFor(model => model.Sexo)*@
+                @(Model.Sexo ==1 ? "Masculino" : "Femenino")
+
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaNacimiento)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

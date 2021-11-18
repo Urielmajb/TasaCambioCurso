@@ -1,0 +1,70 @@
+﻿@model DAL.TasaCambio
+
+@{
+    ViewBag.Title = "TasaCambioVer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>TasaCambioVer</h2>*@
+
+<ol class="breadcrumb">
+    <li>
+        <a href="~/TasaCambio/TasaCambioListar"> Tasa Cambio </a>
+
+    </li>
+</ol>
+
+<div class="panel panel-default">
+    <div class="panel-heading"> Informacion de Tasa de Cambio</div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Fecha)
+                @*@Html.ValueFor(model => model.Fecha, "{0:dd/MM/yyyy}")*@
+            </dt>
+
+            
+
+            <dd>
+                @*@Html.DisplayNameFor(model => model.Fecha)*@
+                @Html.ValueFor(model => model.Fecha, "{0:dd/MM/yyyy}")
+
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Valor)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Valor)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+
+@*<div>
+    <h4>TasaCambio</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+    </dl>
+</div>*@
+
+<div class="text-left">
+    @*<a href="#" data-toggle="modal" data-target="#ModalEliminar" class="btn btn-danger">Eliminar</a>*@
+    <a href="~/TasaCambio/TasaCambioListar" class="btn btn-danger">Regresar</a>
+</div>
+
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { ID = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

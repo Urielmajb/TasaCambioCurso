@@ -1,0 +1,115 @@
+﻿@model IEnumerable<DAL.Alumno>
+
+@{
+    ViewBag.Title = "InscripcionListar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header">
+    <h1 class="text-center">Alumnos<small>Listado de Alumnos Inscritos</small></h1>
+</div>
+<h2 class="page-header">
+    <a href="~/Inscripcion/CursosAdd" class="btn btn-success pull-right"> Nueva Inscripcion </a>
+</h2>
+
+
+<table id="grid" class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaNacimiento)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @(item.Sexo ==1 ? "Hombre" : "Mujer")
+                @*@Html.DisplayFor(modelItem => item.Sexo)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td class="text-right">
+                <a class="btn btn-primary" href="~/Inscripcion/InscripcionVer/@item.id"> Visualizar </a>
+                <a class="btn btn-success" href="~/Inscripcion/InscripcionAdd/@item.id"> Editar </a>
+                @*<a onclick="return confirm ('Esta seguro de eliminar el registro')"
+            class="btn btn-danger" href="~/Cursos/CursosVer/@item.id"> Eliminar </a>*@
+
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+            </td>
+        </tr>
+        }
+
+    </tbody>
+
+
+
+</table>
+
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaNacimiento)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Apellido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>*@

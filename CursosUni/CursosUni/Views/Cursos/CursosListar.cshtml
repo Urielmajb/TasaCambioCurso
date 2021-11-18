@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DAL.Curso>
+
+@{
+    ViewBag.Title = "CursosListar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>CursosListar</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+
+<div class="page-header">
+    <h1 class="text-center">Cursos<small>Listado de Cursos</small></h1>
+</div>
+<h2 class="page-header">
+    <a href="~/Cursos/CursosAdd" class="btn btn-success pull-right"> Nuevo Curso </a>
+</h2>
+
+<table id="grid" class="table table-hover table-bordered" >
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Horas)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Horas)
+                </td>
+                <td class="text-right">
+                        <a class="btn btn-primary" href="~/Cursos/CursosVer/@item.id"> Visualizar </a>
+                        <a class="btn btn-success" href="~/Cursos/CursosAdd/@item.id"> Editar </a>
+                        @*<a onclick="return confirm ('Esta seguro de eliminar el registro')" 
+                           class="btn btn-danger" href="~/Cursos/CursosVer/@item.id"> Eliminar </a>*@
+
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                </td>
+            </tr>
+        }
+
+    </tbody>
+    
+
+
+</table>

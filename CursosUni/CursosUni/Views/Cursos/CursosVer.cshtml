@@ -1,0 +1,101 @@
+﻿@model DAL.Curso
+
+@{
+    ViewBag.Title = "CursosVer";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>CursosVer</h2>*@
+
+<ol class="breadcrumb">
+    <li>
+        <a href="~/Cursos/CursosListar"> Cursos </a>
+
+    </li>
+</ol>
+
+<div class="panel panel-default">
+    <div class="panel-heading"> Informacion de los Cursos</div>
+    <div class="panel-body">
+        <dl class="dl-horizontal">
+
+            <dt>
+                @Html.DisplayNameFor(model => model.id)
+            </dt>
+
+            <dd>
+                @Html.DisplayNameFor(model => model.id)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Horas)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Horas)
+            </dd>
+
+        </dl>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<div class="text-left">
+    <a href="#" data-toggle="modal" data-target="#ModalEliminar" class="btn btn-danger">Eliminar</a>
+    <a href="~/Cursos/CursosListar" class="btn btn-danger">Regresar</a>
+</div>
+
+
+<div class="modal fade" id="ModalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación de Borrado</h4>
+            </div>
+            <div class="modal-body">
+                <p>Quiere borrar el Curso '@Model.Nombre'.</p>
+                <p>
+                    <strong>Esta Seguro de Continuar?</strong>
+                </p>
+            </div>
+            <div class="modal-footer">
+                @if (Model.id > 0)
+                {
+    <a href="/Cursos/CursosEliminar/@Model.id"
+       class="btn btn-danger">Si, Borrar el Curso</a>}
+                <button type="button" class="btn btn-success" data-dismiss="modal">
+                    No, Borrar el Curso
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="modal fade" id="ModalEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">*@
+    @*<div class="modal-dialog" role="document">
+        <div class="modal-content">
+            ...
+        </div>
+    </div>
+</div>*@
+
+
+@*<div>
+    <h4>Curso</h4>
+    <hr />*@
+@*</div>*@
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

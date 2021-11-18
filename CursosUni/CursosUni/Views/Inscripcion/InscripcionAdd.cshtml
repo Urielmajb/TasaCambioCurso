@@ -1,0 +1,186 @@
+﻿@model DAL.Alumno
+
+@{ ViewBag.Title = (Model.id > 0 ? Model.Nombre + " " + Model.Apellido : "Nuevo Alumno");
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="page-header">
+    <h1 class="text-center">Inscripcion<small>Nuevo Alumno</small></h1>
+</div>
+
+
+<ol class="breadcrumb">
+    <li><a href="~/Inscripcion/InscripcionAdd">Alumnos</a></li>
+    <li class="active"> @(Model.id > 0 ? Model.Nombre + " " + Model.Apellido : "Nuevo Alumno") </li>
+</ol>
+
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li role="presentation" class="active">
+        <a href="#informacion" aria-controls="informacion" role="tab" data-toggle="tab">Informaci&oacute;n</a>
+    </li>
+    @if (Model.id > 0)
+    {
+        <li role="presentation">
+            <a href="#cursos" aria-controls="cursos" role="tab" data-toggle="tab">Cursos</a>
+        </li>
+    }
+</ul>
+<div class="tab-content">
+    <div class="tab-pane active" id="informacion" role="tabpanel">
+        @using (Html.BeginForm("Guardar", "Inscripcion", FormMethod.Post, new { id = "frm-alumno" }))
+        {
+            @Html.HiddenFor(x => x.id);
+            <div class="form-group">
+                @Html.LabelFor(x => x.Nombre)
+                @Html.TextBoxFor(x => x.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Nombre, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Apellido)
+                @Html.TextBoxFor(x => x.Apellido, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.Apellido, null, new { @class = "label label-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Sexo)
+                <select name="Sexo" class="form-control">
+                    <option @(Model.Sexo == 1 ? "selected" : "") value="1">Hombre</option>
+                    <option @(Model.Sexo == 2 ? "selected" : "") value="2">Mujer</option>
+                </select>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.FechaNacimiento)
+                @Html.TextBoxFor(x => x.FechaNacimiento, new { @class = "form-control" })
+                @Html.ValidationMessageFor(x => x.FechaNacimiento, null, new { @class = "label label-danger" })
+            </div>
+            <div class="text-right">
+                <button data-ajax="true" data-confirm="¿Está seguro de Guardar el Alumno?" type="submit" class="btn btn-primary">Guardar</button>
+                <a class="btn btn-primary" href="~/Inscripcion/InscripcionListar">Regresar</a>
+            </div>
+        }
+    </div>
+
+    @if (Model.id > 0)
+    {
+        <div class="tab-pane" id="cursos" role="tabpanel">
+
+        </div>
+    }
+
+</div>
+
+<script>
+    function CargarCursos()
+    {
+       $("#cursos").load('@Url.Content("~/Inscripcion/InscripcionCursos/?Alumno_id=" + Model.id)');
+    }
+
+    $(document).ready(function () {
+            @if (Model.id>0)
+            {
+                <Text>
+                    CargarCursos();
+                </Text>
+            }
+    });
+</script>
+
+
+
+@*<ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#informacion" aria-controls="informacion" role="tab" data-toggle="tab">Informaci&oacute;n</a>
+        </li>
+
+        @if (Model.id > 0)
+                {
+
+                    <li role="presentation">
+                        <a href="#cursos" aria-controls="cursos" role="tab" data-toggle="tab">Cursos</a>
+                    </li>
+
+                }
+
+
+
+        <li role="presentation">
+            <a href="#cursos" aria-controls="cursos" role="tab" data-toggle="tab">Cursos</a>
+        </li>
+
+
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="informacion" role="tabpanel">
+            <h1>FICHA DE ALUMNOS</h1>
+        </div>
+
+        @if (Model.id > 0)
+        {
+
+    <div class="tab-pane" id="cursos" role="tabpanel">
+        <h1>FICHA DE CURSOS ASIGNADOS</h1>
+    </div>
+
+        }
+
+
+
+    </div>*@
+
+
+
+
+@*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Alumno</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Apellido, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Apellido, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Apellido, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Sexo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Sexo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Sexo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaNacimiento, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaNacimiento, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FechaNacimiento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

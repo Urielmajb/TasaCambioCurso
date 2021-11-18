@@ -1,0 +1,52 @@
+﻿@model DAL.Curso
+
+@{
+    ViewBag.Title = "CursosAdd";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>CursosAdd</h2>*@
+
+
+<div class="page-header">
+    <h1 class="text-center">Cursos<small>Altas y Cambios de Cursos</small></h1>
+</div>
+
+<ol class="breadcrumb">
+    <li class="active"> @(Model.id > 0 ? Model.Nombre : "Nuevo Curso") </li>
+</ol>
+
+
+@using (Html.BeginForm("Guardar", "Cursos", FormMethod.Post, new { id = "frm-curso" }))
+{
+
+    @Html.HiddenFor(x => x.id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Nombre, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Nombre, null, new { @class = "label label-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Horas, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Horas, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Horas, null, new { @class = "label label-danger" })
+        </div>
+    </div>
+
+    <div class="text-left">
+        <button data-ajax="true" data-confirm="?Esta se de Guardar el curso¿"
+                type="submit" class="btn btn-primary">
+            Guardar
+        </button>
+        <a class="btn btn-primary" href="~/Cursos/CursosListar">Regresar</a>
+    </div>
+ }
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

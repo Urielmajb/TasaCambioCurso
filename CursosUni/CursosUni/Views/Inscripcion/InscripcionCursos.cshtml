@@ -1,0 +1,138 @@
+﻿@model DAL.AlumnoCurso
+
+@{
+    List<DAL.Curso> Cursos = ViewBag.CursosDisponibles;
+    List<DAL.AlumnoCurso> CursosElegidos = ViewBag.CursosElegidos;
+}
+
+@if (Cursos.Count > 0)
+{
+    using (Html.BeginForm("GuardarCurso", "Inscripcion", FormMethod.Post, new { id = "frm-curso2" }))
+    {
+        @Html.HiddenFor(x => x.Alumno_id)
+        <div class="form-group">
+            <label>
+                Seleccione el Curso de su Preferencia
+            </label>
+            <select class="form-control" name="Curso_id">
+                @foreach (var c in Cursos)
+                {
+                    <option value="@c.id">@c.Nombre</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(x => x.Nota)
+            @Html.TextBoxFor(x => x.Nota, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Nota, null, new { @class = "label label-danger" })
+        </div>
+
+
+        <div class="text-left">
+            <button data-ajax="true" data-confirm="¿Esta seguro de Guardar el Alumno?"
+                    type="submit" class="btn btn-primary">
+                Guardar
+            </button>
+        </div>
+
+    }
+}
+
+
+@if (CursosElegidos.Count > 0)
+{
+
+
+    <table id="grid" class="table table-hover table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>
+                    Curso
+                </th>
+                <th>
+                    Nota
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in CursosElegidos)
+            {
+                <tr>
+                    <td>
+                        @item.id
+                    </td>
+                    <td>
+                        @item.Curso.Nombre
+                    </td>
+
+                    @if (item.Nota < 70)
+                    {
+                        <td>
+                            @Html.TextBoxFor(x => item.Nota, new { @class = "form-control alert-warning text-center", @readonly = "true" })
+                            @Html.ValidationMessageFor(x => item.Nota, null, new { @class = "label label-danger required digits" })
+                        </td>
+                    }
+                    else
+                    {
+                        <td>
+                            @Html.TextBoxFor(x => item.Nota, new { @class = "form-control alert-success text-center", @readonly = "true" })
+                            @Html.ValidationMessageFor(x => item.Nota, null, new { @class = "label label-danger required digits" })
+                        </td>
+                    }
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+@*<h2>InscripcionCursos</h2>
+
+    <div>
+        <h4>AlumnoCurso</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Alumno.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Alumno.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Curso.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Curso.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Nota)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nota)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@

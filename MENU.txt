@@ -1,0 +1,65 @@
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("UNI-CURSOS", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Catálogos
+                            <b class="caret"></b>
+                        </a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li>@Html.ActionLink("Cursos", "CursosListar", "Cursos")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Tasa de Cambio", "Index", "TasaCambio")</li>
+                        </ul>
+                      
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Inscripciones
+                            <b class="caret"></b>
+                        </a>
+                        <ul role="menu" class="dropdown-menu">
+                            <li>@Html.ActionLink("Inscribir Cursos ", "InscripcionListar", "Inscripcion")</li>
+
+                        </ul>
+                    </li>
+
+                    @*@if (User.IsInRole("Administrador"))
+                    {*@
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Administración
+                                <b class="caret"></b>
+                            </a>
+                            <ul role="menu" class="dropdown-menu">
+                                <li>@Html.ActionLink("Roles", "Index", "Roles")</li>
+                                <li class="divider"></li>
+                            </ul>
+                        </li>
+                    @*}*@
+                   
+
+                    <li>@Html.ActionLink("Acerda de", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p class="text-center">&copy; @DateTime.Now.Year - UNI-CURSOS</p>
+        </footer>
+    </div>
